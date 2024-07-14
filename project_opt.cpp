@@ -22,8 +22,8 @@ ll Address_bits;
 ll Block_size;
 ll Cache_sets;
 ll Associativity;
-vector<vector<double>> Cor;
-vector<vector<double>> Qua;
+vector<vector<double> > Cor;
+vector<vector<double> > Qua;
 vector<int> indexing_bit;
 vector<bool> indexing;
 vector<string> tmp_rev_ref_block_addr;
@@ -272,12 +272,12 @@ void block_opt_info(vector<reference> reference_Block, vector<bool> indexing, ll
     if (dbg) cout << "\n";
 }
 
-vector<vector<double>> Correlation(vector<reference> reference_Block, ll block_addr_bit){
+vector<vector<double> > Correlation(vector<reference> reference_Block, ll block_addr_bit){
     int ref_Block_len = reference_Block.size();
     int last_addr_idx = Address_bits - 1;// - log2(Block_size);
     int off_set = log2(Block_size); 
     if (dbg) cout << "last_addr_idx: " << last_addr_idx << "\n";
-    vector<vector<double>> cor(Address_bits, vector<double> (Address_bits, 0));
+    vector<vector<double> > cor(Address_bits, vector<double> (Address_bits, 0));
     //vector<string> tmp_rev_ref_block_addr;
     for(auto i :reference_Block){
         string tmp_block_addr = i.block->tag+i.block->idx;
@@ -309,12 +309,12 @@ vector<vector<double>> Correlation(vector<reference> reference_Block, ll block_a
     return cor;
 }
 
-vector<vector<double>> Quality(vector<reference> reference_Block, ll block_addr_bit, ll Index_Set_bit, vector<vector<double>> Cor){
+vector<vector<double> > Quality(vector<reference> reference_Block, ll block_addr_bit, ll Index_Set_bit, vector<vector<double> > Cor){
     int ref_Block_len = reference_Block.size();
     int last_addr_idx = Address_bits - 1;
     int off_set = log2(Block_size);
     if (dbg) cout << "last_addr_idx: " << last_addr_idx << "\n\n";
-    vector<vector<double>> qua(block_addr_bit, vector<double> (Address_bits, 0));
+    vector<vector<double> > qua(block_addr_bit, vector<double> (Address_bits, 0));
     vector<bool> select(Address_bits, false);
     double Max_Q=0;
     int Max_Q_idx=0;
@@ -379,7 +379,7 @@ void debug_qua(vector<vector<double> > &A){
     cout << "\n";
 }
 
-void debug_cor(vector<vector<double>> &A){
+void debug_cor(vector<vector<double> > &A){
     cout << "\n-----debug correlation-----\n";
     for(auto i: A){
         for(auto j: i){
